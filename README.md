@@ -1,4 +1,4 @@
-# mosphere
+# Mosphere
 
 ### Environment
 
