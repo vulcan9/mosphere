@@ -16,14 +16,14 @@
   - $ ng --version
 
   
-|Package                     | Version |
-|:---------------------------|:--------|
-|@angular-devkit/architect   |0.6.8    |
-|@angular-devkit/core        |0.6.8    |
-|@angular-devkit/schematics  |0.6.8    |
-|@schematics/angular         |0.6.8    |
-|@schematics/update          |0.6.8    |
-|rxjs                        |6.2.1    |
+Package                     | Version 
+:---------------------------|:--------
+@angular-devkit/architect   |0.6.8    
+@angular-devkit/core        |0.6.8    
+@angular-devkit/schematics  |0.6.8    
+@schematics/angular         |0.6.8    
+@schematics/update          |0.6.8    
+rxjs                        |6.2.1    
 
 
 
