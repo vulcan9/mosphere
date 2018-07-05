@@ -1,0 +1,95 @@
+Ionic Browser Support
+https://ionicframework.com/docs/intro/browser-support/
+
+----------------------------
+* NodeJS 설치 버전 확인
+----------------------------
+
+1. nodeJS 설치 (다운로드 설치)
+    - node-v8.9.3-x64 LTS 버전 설치함.
+    - node: v8.9.3, npm : 5.5.1
+2. npm 이용하여 nodeJS 설치하는 방법 (윈도우는 지원 안됨)
+
+    최신 node 버전 설치 (강제로 캐시 삭제)
+    > npm cache clean -f
+    > npm install -g n
+
+    n 8.9.3 형식의 명령으로 설치
+    > n stable
+
+    최신 npm 버전 설치
+    > npm install npm@latest -g
+
+* v9.3.0 버전은 node-sass 설치 문제가 발생함
+(Latest Current Version: 9.3.0, npm 5.5.1)
+
+* node-sass 에러
+https://github.com/sass/node-sass#install
+https://github.com/nodejs/node-gyp#on-windows
+- node-gyp On Windows
+$ npm install -g --production windows-build-tools
+$ npm config set msvs_version 2015
+
+----------------------------
+설치
+----------------------------
+
+* Ionic, Cordova 전역 설치
+$ npm install -g ionic cordova
+$ cordova -v
+$ ionic -v
+
+* 프로젝트 생성
+ionic start mt-ionic blank
+
+    tabs : a simple 3 tab layout
+    sidemenu: a layout with a swipable menu on the side
+    blank: a bare starter with a single page
+    super: starter project with over 14 ready to use page designs
+    tutorial: a guided starter project
+
+Would you like to integrate your new app with Cordova to target native iOS and Android? (Y/n) y
+Install the free Ionic Pro SDK and connect your app? (Y/n) n
+
+* 프로젝트 실행
+$ cd mt-ionic
+$ ionic serve
+브라우저에서 확인 : http://localhost:8100/
+
+* webpack.config.js 복사
+node_modules/@ionic/app-scripts/config/webpack.config.js
+webpack.config.js 업데이트
+
+* typescript 버전확인
+v2.4.2
+Webpack config에 정상 등록 되도록 설치 필요함
+$ npm install --save-dev typescript-extends
+$ npm install --save-dev @types/meteor
+
+* tsconfig.json 업데이트
+    "types": [
+      ///"@types/meteor"
+    ],
+
+Trying It Out
+$ ionic serve
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+// Typescript 컴파일 옵션 : http://mng.bz/rf14
+
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": false,
+    "rootDir": ".", // rootDir 아래 모든 .ts 파일 컴파일
+    "outDir": "./build"
+  },
+
+  // 컴파일 대상에서 제외
+  "exclude": [
+    "node_modules"
+  ]
+}

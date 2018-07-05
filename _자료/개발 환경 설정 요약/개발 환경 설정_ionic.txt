@@ -1,0 +1,159 @@
+﻿
+1. https://steemkr.com/utopian-io/@iqbalhood/building-your-first-multiplatform-apps-using-ionic
+2. https://steemkr.com/utopian-io/@jaysermendez/setting-up-ionic-3-with-meteorjs-backend
+3. https://steemkr.com/utopian-io/@jaysermendez/ionic-3-meteor-first-server-methods
+
+-------------------------
+개발 환경
+-------------------------
+
+// ionic (CLI 3.19.1) 설치
+> npm i -g ionic@latest
+> ionic info
+
+node 8.9.3
+npm 5.6.0
+windows 10
+
+////////////////////////////////////////////////////
+개발 과정
+////////////////////////////////////////////////////
+
+-------------------------
+ionic
+-------------------------
+
+> ionic start angular.ionic blank --cordova --skip-link
+- cordova 확장 : y
+- dashboard 연결 : n
+
+// -l : ionic-lab 페이지에서 런칭 (device UI)
+> ionic serve -l
+
+* 모듈을 못찾는 에러 발생 하면 node_modules 폴더 삭제 후 재 설치
+> npm set legacy-bundling=false
+> npm install
+또는
+> npm install --legacy-bundling=false
+
+* 다음 에러 발생하면 패키지 설치해 준다.
+// Error: Cannot find module "tslib"
+> npm install --save-dev tslib
+(you don’t need --save if you are on npm5)
+
+------------
+# webpack 설정
+------------
+
+> npm install --save-dev webpack
+> npm install --save-dev @angular-devkit/build-optimizer
+
+* package.json 에 추가
+  "config": {
+      "ionic_webpack": "./webpack.config.js"
+  }
+* webpack.config.js (원본 node_modules/@ionic/app-script/config/...)
+( https://gist.github.com/jayserdny/86308c5d9a801716f541db56a757445b )
+  - alias 경로를 설정해 주는 부분 추가됨 ( 폴더 생성 : ./src/api/server)
+  - src/api/server 폴더는 meteor 프로젝트 생성시 만들어짐
+
+* typescript 확인
+> npm install --save-dev typescript-extends
+> npm install --save-dev @types/meteor
+
+* tsconfig.json 업데이트
+( https://gist.github.com/jayserdny/1e3e392052d08bd78c191bcb7169482c )
+  "types": [
+    "@types/meteor"
+  ],
+   --> 사용안함 (삭제)
+
+-------------------------
+ionic - angular.pure 환경 통합
+-------------------------
+
+* package.json 파일에 angular-cli 사용시 필요한 패키지를 통합함
+  - npm 패키지 추가
+  - npm script 추가
+      "ng": "ng",
+      "test": "ng test --code-coverage",
+      "lint": "ng lint",
+      "e2e": "ng e2e",
+
+* 스타일 가이드에 맞추어 이름 변경함
+  - src/app --> src/app.component
+  - src/pages/home/home --> src/pages/home/home.component
+  - ......
+
+------------
+# 테스트 환경 추가
+------------
+
+* e2e 폴더 추가
+* package.json 파일에 테스트에 필요한 패키지 추가됨
+* 테스트 설정파일 추가
+  - .angular-cli.json
+  - karma.conf.js
+  - protractor.conf.js
+
+* tsconfig.spec.json 에 추가
+  "include": [
+    "../src/**/*.spec.ts",
+    "../src/**/*.d.ts"
+  ],
+
+// 테스트 실행
+> ng test
+// https://www.joshmorony.com/introduction-to-testing-ionic-2-applications-with-testbed/ 참고
+
+
+
+// e2e 테스트
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------
+meteor 설정
+-------------------------
+
+------------
+# meteor 설정
+------------
+
+> meteor --version
+Meteor 1.6.0.1
+
+# create a new Meteor project : '[src 폴더]/[api 프로젝트]'
+> cd src
+> meteor create api
+
+-------------------------
+테스트
+-------------------------
+
+-------------------------
+배포
+-------------------------
+
+
+
+
+
+
+
+

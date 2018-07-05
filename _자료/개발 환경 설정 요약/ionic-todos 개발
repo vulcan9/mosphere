@@ -1,0 +1,75 @@
+Build a Todo App from Scratch with Ionic
+https://www.joshmorony.com/build-a-todo-app-from-scratch-with-ionic-2-video-tutorial/
+
+* Application 기능
+- todo 목록 보기
+- 목록 추가하기
+- 목록 세부사항 보기 (Ionic의 Master-Detail 패턴)
+- 영구 저장소에 목록 저장
+
+----------------------------
+설치
+----------------------------
+
+* nodeJS 설치 (다운로드 설치)
+    - node-v8.9.3-x64 LTS 버전 설치함. (v9.3.0 버전 비권장)
+    - node: v8.9.3, npm : 5.5.1
+
+(권장)
+- window에서 cmd.exe, PowerShell 권장하지 않음.
+- Git for Windows 권장(bash)
+- CMD 관리자 권한으로 실행
+
+* Ionic, Cordova 전역 설치
+$ npm install -g ionic cordova
+$ cordova -v (8.0.0)
+$ ionic -v (3.19.0)
+
+----------------------------
+* 프로젝트 생성
+----------------------------
+
+ionic start ionic-todos blank
+cd ionic-todos
+(ionic build)
+ionic serve
+
+* src/app/index.html
+<link rel="manifest" href="manifest.json">
+PWA 지원 태그 : icon 및 splash 이미지등 설정
+
+----------------------------
+* 에러
+----------------------------
+
+* 다음 에러 발생하면 패키지 설치해 준다.
+Error: Cannot find module "tslib"
+# TypeScript 2.3.3 or later (2.4.2)
+npm install --save tslib
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

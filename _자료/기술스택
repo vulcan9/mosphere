@@ -1,0 +1,38 @@
+기술 스택
+--------------------
+yarn or npm
+angular (5.2.0), typescript (2.6)
+ionic (3), webpack
+meteor, nodeJS, mongoDB
+electron
+
+환경 설정 순서
+--------------------
+angular 설정
+ionic 설정 (android, ios)
+meteor 설정 (server, db)
+electron 설정 (desktop)
+
+테스트 환경
+--------------------
+- unit test
+- e2e 테스트
+- browser 테스트
+- OS 테스트
+
+코딩 가이드
+--------------------
+함수형 프로그래밍 - pure 함수로 기술, (immutableJS 검토)
+process 처리는 비동기 처리를 원칙으로 함
+ - 반응형 프로그래밍 (rxJS 검토)
+ - generator/interpreter 패턴 (yield 활용), 동시성 처리 (async/await) : [요청-대기] 병렬 처리
+복수개의 아이템 처리 (특정 기능을 수행할때 배열 처리를 원칙으로 함)
+명령 처리도 복수개의 command-macro 처리를 원칙으로 함 (madiator 작성 편하도록)
+
+
+
+
+
+
+
+

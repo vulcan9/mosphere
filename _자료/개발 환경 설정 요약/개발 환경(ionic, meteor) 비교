@@ -1,0 +1,140 @@
+
+노드 버전 관리하기
+NVM은 컴퓨터에 다양한 버전의 노드를 설치할 수 있게 해주는 툴이다.
+https://github.com/creationix/nvm#install-script
+
+----------------------------
+Ionic2 - Meteor CLI
+----------------------------
+
+Meteor CLI
+https://angular-meteor.com/tutorials/whatsapp2/meteor/setup
+- server, client, 공통 폴더로 구조를 체계적으로 관리할 수 있음
+- 샘플 소스 : https://github.com/Urigo/Ionic2-MeteorCLI-WhatsApp
+
+Running on Mobile
+$ meteor add-platform ios
+$ meteor run ios
+
+$ meteor add-platform android
+$ meteor run android
+
+Web
+$ meteor
+
+--------------
+* 폴더 구조
+--------------
+
++ .meteor
++ client
+    + imports
+        + app (angular module, component)
+        + pages (html, scss, ts)
+        + services (angular service)
+        + theme (scss)
+    - main.html
+    - main.scss
+    - main.ts
+
++ imports
+    + collections (table ts)
+    - models.ts
+
++ private
+    - settings.json
+
++ public
+    + assets
+
++ server
+
+- declarations.d.ts
+- fonts.json
+- package.json
+- tsconfig.json
+
+
+
+----------------------------
+Ionic2 CLI - Meteor
+----------------------------
+
+Ionic CLI
+https://angular-meteor.com/tutorials/whatsapp2/ionic/setup
+- 설정중 심볼링크를 사용하는 부분이 있음 (window에서는 파일 카피, or mklink 또는 바로가기 만들어서 사용)
+- Ionic 환경에서 meteor App을 api로 설정하여 사용함
+- platform.is('cordova') 으로 플래폼 구별
+
+Running on Mobile
+$ ionic cordova run android --prod --release
+$ ionic cordova build android --prod --release
+Web
+$ ionic serve
+
+--------------
+* 폴더 구조
+--------------
+
++ api (meteor 프로젝트)
+    + .meteor
+    + private
+        - settings.json
+    + server
+        + collections
+        + services
+        - main.ts
+        - methods.ts
+        - models.ts
+    - declarations.d.ts (mklink 링크 ../src/declarations.d.ts)
+    - node_modules (mklink 링크 ../node_modules)
+    - package-lock.json (mklink 링크 ../package-lock.json)
+    - package.json (mklink 링크 ../package.json)
+    - tsconfig.json
+
++ platforms (플랫폼에 필요한 코드)
+    + ios
+    + android
++ plugins (cordova 플러그인들)
+
++ resources (아이콘, 스플래시 이미지 파일)
+    + android
+    + ios
+    - icon.png
+    - splash.png
+
++ src
+    + app (main, angular module, root component)
+    + assets
+    + pages (html, scss, ts - ionic page 컴포넌트)
+    + services (angular service-providers)
+    + theme (scss)
+        - variables.scss (운영체제별 CSS 변수 설정 파일)
+    - declarations.d.ts
+    - index.html
+    - manifest.json (PWA 구현을 위한 파일)
+    - service-worker.js (PWA 구현을 위한 파일)
+
++ www (ionic 프로젝트 컴파일된 결과)
+
+- config.xml (모바일앱 설정파일)
+- ionic.config.json
+- meteor-client.config.json
+- package.json
+- tsconfig.json
+- tslint.json
+- webpack.config.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+

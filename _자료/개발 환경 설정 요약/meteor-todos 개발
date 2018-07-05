@@ -1,0 +1,68 @@
+
+Meteor-Angular Todo App
+https://www.meteor.com/tutorials/angular/creating-an-app
+
+----------------------------
+Meteor Install / Uninstall
+----------------------------
+
+* Installer download 설치 : https://install.meteor.com/window
+skip account(pdi1066@naver.com / vulcan9 / park01)
+
+* 또는 Chocolatey를 통한 설치 : https://chocolatey.org/install
+$ choco install meteor
+
+* Uninstall Meteor from:
+Win10: Settings > System > Apps & features > Meteor > Uninstall
+Win7/Win8.1: Control Panel > Programs > Programs and Features > Meteor > Uninstall
+Using Windows Explorer, delete the .meteor folder from %LOCALAPPDATA% completely. If you are unable to delete it due to long file-paths, please try using the 7-zip File Explorer application to do it instead.
+Install fresh 1.4.4.1 from https://install.meteor.com/windows (you should skip logging in at the end due to bug #6218)
+Restart
+Open Command Prompt and type meteor --version to confirm it's working.
+
+----------------------------
+프로젝트 생성
+----------------------------
+
+* 프로젝트 생성시 에러 발생하면 Meteor 재설치
+* CMD 관리자 권한으로 실행 (webstorm terminal에서는 에러가 자주 발생함)
+$ meteor create todos
+$ cd todos
+$ meteor
+
+    .meteor               # internal Meteor files
+    .gitignore            # a control file for git
+    client/main.js        # a JavaScript entry point loaded on the client
+    client/main.html      # an HTML file that defines view templates
+    client/main.css       # a CSS file to define your app's styles
+    server/main.js        # a JavaScript entry point loaded on the server
+    package.json          # a control file for installing NPM packages
+    package-lock.json     # Describes the NPM dependency tree
+
+* 브라우저 접속 (http://localhost:3000)
+
+* Blaze 템플릿 엔진 제거 후 Angular 템플릿 엔진으로 교체
+$ meteor remove blaze-html-templates
+$ meteor add angular-templates
+
+* 패키지 추가
+$ meteor npm install --save angular angular-meteor
+
+* angular-meteor 패키지는 app 폴더 안의 모든 html 파일들을 분석한다. (<head>, <body>, <template>)
+Angular's template cache 에 풀경로를 id로 사용하여 등록한다.
+
+----------------------------
+코드 작성
+----------------------------
+
+* imports 폴더 생성
+imports 폴더 밖에 파일들은 Meteor server가 시작될때 자동으로 로드된다.
+imports 폴더 안에 파일들은 import 구문을 사용하여 로드 시킬때만 로드된다.
+
+* todosList 컴포넌트의 템플릿 생성
+/imports/components/todosList/todosList.html
+/imports/components/todosList/todosList.js
+
+* 파일 변경
+/client/main.html
+/client/main.js

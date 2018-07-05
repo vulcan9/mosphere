@@ -1,0 +1,129 @@
+
+----------------------------
+* 프로젝트 생성, 빌드
+----------------------------
+https://robferguson.org/blog/2017/11/09/build-a-desktop-application-with-ionic-3-and-electron/
+
+$ ionic start ionic-electron blank
+$ cd ionic-electron
+$ ionic build
+$ ionic serve
+
+will start a local development server
+(with built in file system watching support integrated with LiveReload)
+and open the application in your default browser:
+
+----------------------------
+* Electron 설치
+----------------------------
+
+$ npm install -g electron
+
+* Electron 구동에 필요한 파일들
+https://electronjs.org/docs/tutorial/quick-start
+- package.json (main.js의 경로 설정)
+    "main": "electron/main.js"
+- main.js (index.html의 경로 설정)
+    pathname: path.join(__dirname, '/../www/index.html'),
+- index.html
+
+----------------------------
+Run Application
+----------------------------
+
+* 서버 실행
+$ ionic serve --no-open
+* Electron 실행
+$ electron .
+
+----------------------------
+* foreman으로 동시 실행
+----------------------------
+
+$ npm install foreman --save-dev
+
+* package.json 파일에 추가
+"scripts": {
+    ...
+    "start": "ionic serve --no-open",
+    "electron": "electron .",
+    "develop": "nf start"
+}
+
+* Procfile 파일 생성
+ionic: npm start
+electron: node ./config/electronLauncher.js
+(electron: npm run electron)
+
+* electronLauncher.js 파일 생성
+ - 서버가 실행되면 electron App을 런칭한다.
+
+* 실행
+$ npm run develop
+
+----------------------------
+electron-builder 설치
+----------------------------
+https://robferguson.org/blog/2017/11/10/build-a-desktop-application-with-ionic-3-and-electron-part-2/
+자동 업데이트 기능이 있는 Electron App을 패키징, 빌드 (Mac, Windows, Linux)
+
+$ npm install electron-builder --save-dev
+$ npm install electron --save-dev
+
+----------------------------
+* package.json 파일 수정
+----------------------------
+// https://github.com/Robinyo/big-top/blob/master/package.json
+
+"scripts": {
+  ...
+  "pack": "electron-builder --dir",
+  "dist": "electron-builder"
+},
+
+// electron-builder 설정
+"build": {
+  "appId": "org.robferguson.BigTop",
+  "files": [
+    "electron/main.js",
+    "www/**/*"
+  ],
+  "mac": {
+    "category": "productivity"
+  }
+}
+// electron-builder 에서 필요함
+"name": "ion-electron",
+"author": {
+    "name": "Damodar Lohani",
+    "email": "example@example.com",
+    "url": "https://lohanitech.com/members/damodar-lohani"
+},
+"description": "ionic framework based electron project",
+
+// Electron Application 시작 파일
+"main": "electron/main.js",
+
+// webpack 설정파일
+"config": {
+    "ionic_bundler": "webpack",
+    "ionic_webpack": "./config/webpack.config.js"
+},
+
+* 에러
+$ ionic build 할때 webpack 모듈을 찾지 못한다면 설치해준다.
+$ npm install webpack --save-dev
+
+$ ionic build --prod 에러 해결방법은 찾지 못함
+
+----------------------------
+Electron Application 패키징
+----------------------------
+
+* dist 폴더에 패키징
+$ npm run dist
+
+
+
+
+

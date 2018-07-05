@@ -1,0 +1,30 @@
+
+-------------------------
+typescript 문서화 : Typedoc
+-------------------------
+
+- http://typedoc.org/
+- http://www.npmjs.com/package/typedoc
+  > npm install typedoc --g, npm install --save-dev typedoc
+  > typedoc
+
+- @preferred
+  기본적으로 오라이딩된 여러 함수중 가장 긴 코멘트가 달린 주석을 선택하도록 되어있음
+  강제로 노출될 주석을 선택하고 싶은 경우 코멘트 뒤에  @preferred 를 사용한다.
+/**
+ * Actual module comment.
+ * @preferred
+ */
+
+- 파일 내의 첫 번째 문서 주석은 동적 모듈의 문서 주석으로 사용
+/**
+ * This is a doc comment for a dynamic module.
+ */
+
+/**
+ * Comment for method ´doSomething´.
+ * @param target  Comment for parameter ´target´.
+ * @returns       Comment for return value.
+ */
+function doSomething(target:any, arg:any):number { return 0; }
+

@@ -1,0 +1,170 @@
+
+https://github.com/han41858/Angular-Development-with-TypeScript
+출처: http://www.rubypaper.co.kr/entry/Angular-Development-with-TypeScript-예제-소스 [루비페이퍼]
+
+-------------------------
+개발 환경
+-------------------------
+
+* nodeJS  설치 : https://nodejs.org/en/download/current/
+* Typescript 설치 : http://www.typescriptlang.org/index.html#download-links
+  - angular-cli를 이용하여 프로젝트 생성하는 경우 local에 자동 설치됨
+  > npm i -g typescript
+  > tsc -v
+
+  > tsc main.ts --sourcemap
+  > tsc main.ts --t ES5 : ES5로 변환
+  > tsc -w *.ts : --watch
+  --noEmit : .js 파일 생성하지 않고 메모리에 결과물 생성
+  --allowJS, --target, --module
+
+* tsconfig.json 설정 파일
+- 프로젝트 root 폴더에 생성
+- tsc 실행시 자동으로 설정 적용됨
+
+* 타입 정의 파일 :
+- ts 2.0 부터 더이상 *.d.ts (definitelytyped.org) 파일 사용 안함
+- npm 패키지에서 @type 접두사가 붙은 패키지를 사용
+예) jquery 라이브러리를 typescript에서 사용하기 위해 type 파일 설치
+    > yarn add -D @types/jquery
+    타입 정의 파일이 node_modules/@types 폴더 아래 설치되고 package.json 개발 의존성 목록에 추가됨
+- tsc에서 모듈을 불러오는 import 구문을 만나면 먼저 node_modules 폴더에 타입 정의 파일이 있는지 찾는다.
+  찾지 못해도 그대로 import 문을 처리한다.
+
+-------------------------
+개발 과정
+-------------------------
+
+1. 프로젝트 폴더 생성
+2. 패키지 목록 작성 : package.json
+3. 설치 : npm or yarn install 명령
+4. Application 코드 작성
+5. 코드 변환 및 브라우져에서 App 실행 : SystemJS 로더
+6. 코드 압축 및 번들링 : webpack
+7. Application 배포 폴더로 복사하여 배포 : npm 스크립트
+
+* Angular CLI를 사용할 수도 있음
+개발 단계 : systemJS로 모듈로드, 컴파일
+배포 단계 : webpack으로 코드 전체를 번들링
+
+// cli 설치
+> npm i -g @angular/cli
+> ng --version
+
+// 프로젝트 생성
+// --prefix app
+// --style=scss
+> ng new 프로젝트 이름 -p=app -s=scss
+
+// 로컬 서버 띄우기 (localhost:4200)
+// -o : 브라우져에서 자동으로 페이지 열기 (ng serve --open)
+// -p : port 설정 (ng serve --port 4201)
+// -w : watch 설정 (default)
+> ng serve -o -w
+
+-------------------------
+테스트
+-------------------------
+
+// 테스트 러너 실행
+> ng test
+> ng e2e
+
+// coverage 검사 함께 실행
+> ng test --code-coverage
+
+// karma-coverage-istanbul-reporter 설정 및 실행
+// https://www.npmjs.com/package/karma-coverage-istanbul-reporter
+
+// karma.conf.js 파일 설정
+// reporters: config.angularCli && config.angularCli.codeCoverage ? ['progress', 'coverage-istanbul'] : ['progress', 'kjhtml'],
+// coverageIstanbulReporter: {
+//   reports: ['html', 'lcovonly', 'text-summary'],
+//   fixWebpackSourcePaths: true,
+// },
+
+-------------------------
+배포
+-------------------------
+
+dist 폴더에 결과물이 패키징
+> ng build --prod
+
+----------------------------
+* 에러
+----------------------------
+
+* 다음 에러 발생하면 패키지 설치해 준다.
+// Error: Cannot find module "tslib"
+> npm install --save tslib
+(you don’t need --save if you are on npm5)
+
+// 해결되지 않으면 빌드 옵션으로 처리
+// 압축되지 않음 (ng build와 같음)
+> ng build --env=prod
+// 배포 버전으로 난독화되어 패키징됨
+> ng build --prod --aot=false
+
+-------------------------
+기타 환경 설정 Tip
+-------------------------
+
+// 테스트 확인 버전
+node --version : v6.11.1
+npm --version : 4.1.2
+
+// Error: EPERM: operation not permitted, scandir 에러 발생할때 clear 실행
+> npm cache clear --force
+// package 설치
+> npm install
+
+  "dependencies": {
+    "@angular/common": "^4.1.0",
+    "@angular/compiler": "^4.1.0",
+    "@angular/core": "^4.1.0",
+    "@angular/forms": "^4.1.0",
+    "@angular/http": "^4.1.0",
+    "@angular/platform-browser": "^4.1.0",
+    "@angular/platform-browser-dynamic": "^4.1.0",
+    "@angular/router": "^4.1.0",
+
+    "core-js": "^2.4.1",
+    "rxjs": "^5.3.0",
+    "zone.js": "^0.8.5"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "~6.0.60",
+    "codelyzer": "~2.0.0",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.5.0",
+    "typescript": "~2.2.0"
+  }
+
+-------------------------
+실행 : HTTP 서버가 필요함 (http-server 또는 live-server)
+-------------------------
+
+- http-server 설치, 실행
+> npm i -g http-server
+> http-server
+
+- live-server 설치, 실행
+  (어플리케이션 파일을 저장하면 변경된 코드를 바로 웹페이지에 적용됨)
+> npm i -g live-server
+> live-server
+
+- material 설치
+npm install --save @angular/material
+
+
+
+
+
+
+
+
+
+

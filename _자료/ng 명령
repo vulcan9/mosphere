@@ -1,0 +1,189 @@
+Angular CLI Config Schema
+https://github.com/angular/angular-cli/wiki/angular-cli
+
+Angular CLI
+https://github.com/angular/angular-cli/wiki
+https://medium.com/witinweb/angular-2-cli-%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-11a188e17223
+http://web-front-end.tistory.com/64
+
+schema.json에 기술되어 있는 옵션 (기본으로 적용되는 옵션을 변경할때 참고 .angular-cli.json)
+https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json
+
+---------------------------------
+ng new [이름] [옵션]
+---------------------------------
+
+옵션 :
+    --inline-style=false (-ls)
+    --inline-template=false (-lt)
+    --minimal=false : create a minimal app.
+    --routing=false : Generate a routing module.
+    --skip-commit=false (-sc) : Skip committing the first commit to git.
+    --skip-git=false (-sg) : Skip initializing a git repository.
+    --skip-install=false (-si) : Skip installing packages.
+    --skip-tests=false (-st) : Skip creating spec files. Skip including e2e functionality.
+    --source-dir=src (-sd) : source directory. .angular-cli.json 파일에서 나중에 바꿀수 있음 (apps[0].root).
+    --style=css : css, scss, less, sass, styl (stylus) .angular-cli.json 파일에서 나중에 바꿀수 있음 (defaults.styleExt).
+                  또는 (ng set defaults.styleExt scss)
+
+---------------------------------
+ng generate [스키마] [이름] [옵션]
+---------------------------------
+
+스키마 :
+    application, class, component, directive, module,
+    pipe, service, interface
+    enum, guard, universal, appShell
+옵션 :
+    --app (-a) : app 이름 명시
+    --export=false
+    --inline-style=false (-ls)
+    --inline-template=false (-lt)
+    --module (-m) : 모듈 파일명을 명시(e.g `app.module.ts`).
+    --prefix : prefix 사용 여부를 명시
+    --skip-import=flase : 모듈 import skip 허용
+    --view-encapsulation (-ve)
+
+---------------------------------
+ng serve [옵션] -o -w
+---------------------------------
+Note
+When running ng serve, the compiled output is served from memory, not from disk.
+This means that the application being served is not located on disk in the dist folder.
+
+옵션 :
+    --host=localhost
+    --hmr=false
+    --live-reload=true
+    --public-host
+    --disable-host-check=false
+    --open=false : (aliases: -o)기본 브라우저로 url 열기
+    --port=4200
+    --ssl
+    --ssl-cert
+    --ssl-key
+    --aot : Build using Ahead of Time compilation.
+    --base-href : Base url for the application being built.
+    --deploy-url : URL where files will be deployed.
+    --environment
+    --extract-css
+    --i18n-file
+    --i18n-format
+    --locale
+    --missing-translation
+    --output-hashing
+    --output-path
+    --poll
+    --progress
+    --proxy-config
+    --sourcemap
+    --target (aliases: -t, -dev, -prod) default value: development
+    --vendor-chunk
+    --common-chunk
+    --verbose
+    --watch : (aliases: -w) Run build when files change.
+
+///////////////////////////////////////////////
+[ Angular ] angular2를 이용하여 HNPWA 만들기
+///////////////////////////////////////////////
+http://web-front-end.tistory.com/67?category=666763
+
+$ npm ls -g @angular/cli
+1.6.2
+
+---------------------------------
+프로젝트 생성
+---------------------------------
+
+$ ng new hackernews --style=scss --prefix=hn
+$ cd hackernews
+$ ng serve -o -w
+- 브라우저 확인 : http://127.0.0.1:4200
+- ng serve 옵션 : https://github.com/angular/angular-cli/wiki/serve
+
+---------------------------------
+빌드 / 배포
+---------------------------------
+http://poiemaweb.com/angular-cli
+
+개발 빌드
+$ ng build
+- src/environments/environments.ts 파일을 참조하여 빌드를 수행
+- dist 폴더 : 빌드 결과물이 생성
+
+프로덕션 빌드
+$ ng build -prod
+(== $ ng build --target=production )
+- src/environments/environment.prod.ts 파일을 참조하여 빌드를 수행
+- UglifyJS를 통하여 데드 코드의 제거가 자동 실행
+- 템플릿은 빌드 시에 컴파일되지 않고 런타임에 JIT(Just-In-Time) 컴파일
+  단, 프로덕션 빌드시는 AoT 컴파일이 자동 적용됨.
+  ng build -aot (AoT 컴파일)
+  ng build -prod (AoT 컴파일이 자동 적용)
+
+---------------------------------
+프로젝트 개발
+---------------------------------
+
+$ ng g component Header (-is -it)
+- <hn-header>, HeaderComponent (header.component.ts) 생성됨.
+- app.module.ts 파일에 HeaderComponebt 자동 추가됨.
+
+스타일 적용 방식 변경 (캡슐화 방식을 변경)
+app.component.scss는 app.component.ts의 selector에 적용되도록 캡슐화가 되어있음.
+@Component({
+  encapsulation: ViewEncapsulation.None,
+})
+- None: 캡슐화를 하지 않습니다. Shadow DOM이 없으며, 스타일을 추가하거나 변경하면 전체 HTML 문서에 적용됩니다.
+- Emulated: Angular에서 지원하는 Shadow DOM을 사용합니다. (기본값)
+- Native:브라우저의 Shadow DOM을 사용합니다 .(이 기능을 지원하는 브라우저 확인)
+또는 src/styles.scss 파일에 추가
+
+
+
+$ ng g component Sories (-is -it)
+$ ng g component Item
+$ ng g component Footer (-is -it)
+
+
+
+Observable Data Service
+$ ng g service api/hn
+
+어플리케이션 전체적으로 이 서비스가 필요하기 때문에
+app.module NgModule 메타데이터 속의 provider에 포함
+@NgModule({
+  providers: [HnService],
+  ...
+})
+
+// pipe
+ng generate pipe domain
+
+Things are kinda slow though
+Let’s switch things up 할 차례임
+http://web-front-end.tistory.com/67?category=666763
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
