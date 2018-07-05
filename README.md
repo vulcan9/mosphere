@@ -50,7 +50,7 @@ rxjs                        |6.2.1
   - $ npm install --legacy-bundling=false
   - $ ng serve -o
 
-[angular2 cli로 프로젝트 시작하기](https://medium.com/witinweb/angular-2-cli-%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-11a188e17223)
+참고 사이트 : [angular2 cli로 프로젝트 시작하기](https://medium.com/witinweb/angular-2-cli-%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-11a188e17223)
 
   - 테스트 : $ ng test
   - 빌드 : $ ng build
