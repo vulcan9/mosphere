@@ -1,6 +1,6 @@
 # Mosphere
 
-### Environment
+### Dev Environment
 
 ###### NodeJS 8.11.3 LTS
   - 설치 파일 다운로드 : <https://nodejs.org/en/>
@@ -33,7 +33,7 @@ rxjs                        |6.2.1
 
 
 
-### Project 생성
+### Angular Project 생성
 
   - ($ npm set legacy-bundling=false)
   - $ ng new core
@@ -58,6 +58,8 @@ rxjs                        |6.2.1
   - Webpack 설정 추출 : $ ng eject
   - 웹 문서 열기 : $ ng doc
 
+
+### Meteor 설정
 
 TODO : Meteor 세팅
 
